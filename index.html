@@ -146,6 +146,31 @@
   .closing{background:var(--ink); color:var(--paper); text-align:center;}
   .closing h2{font-size:2.5rem; margin-bottom:26px;}
 
+  .contact{background:var(--ink); color:var(--paper);}
+  .contact .wrap{display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:start;}
+  .contact h2{font-size:2.5rem; margin-bottom:20px;}
+  .contact .intro p{color:#D3D9D6; margin-bottom:28px; max-width:420px;}
+  .contact-meta{list-style:none; display:flex; flex-direction:column; gap:14px; font-size:0.9rem; color:#B7C2BD;}
+  .contact-meta strong{color:var(--brass-light); font-weight:700; margin-right:8px;}
+  .contact-form{background:var(--ink-deep); border:1px solid rgba(216,167,92,0.22); border-radius:10px; padding:36px; display:grid; grid-template-columns:1fr 1fr; gap:18px 20px;}
+  .field{display:flex; flex-direction:column; gap:8px;}
+  .field.full{grid-column:span 2;}
+  .field label{font-size:0.76rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; color:#B7C2BD;}
+  .field label .req{color:var(--brass-light);}
+  .field input,.field select,.field textarea{font:inherit; font-size:0.95rem; color:var(--paper); background:rgba(246,243,236,0.04); border:1px solid rgba(246,243,236,0.18); border-radius:4px; padding:13px 14px; transition:border-color 0.2s ease, background 0.2s ease;}
+  .field select option{color:var(--ink);}
+  .field textarea{min-height:150px; resize:vertical;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none; border-color:var(--brass-light); background:rgba(246,243,236,0.07);}
+  .field input::placeholder,.field textarea::placeholder{color:#6F7C77;}
+  .hp{position:absolute; left:-9999px;}
+  .form-foot{grid-column:span 2; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:6px;}
+  .form-foot small{font-size:0.78rem; color:#8F9C97;}
+  .contact-form button{border:none; cursor:pointer; font-family:inherit;}
+  .contact-form button:disabled{opacity:0.6; cursor:wait;}
+  .form-status{grid-column:span 2; font-size:0.9rem; padding:14px 16px; border-radius:4px; display:none;}
+  .form-status.ok{display:block; background:rgba(159,201,168,0.12); color:#9FC9A8; border:1px solid rgba(159,201,168,0.35);}
+  .form-status.err{display:block; background:rgba(217,120,92,0.12); color:#E5A08A; border:1px solid rgba(217,120,92,0.35);}
+
   footer{background:var(--ink-deep); color:#9FACA6; padding:50px 0 30px; font-size:0.85rem;}
   footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
   footer .foot-links{display:flex; gap:20px;}
@@ -156,6 +181,10 @@
     .work-grid{grid-template-columns:1fr;}
     .work-card.featured-work{grid-column:span 1;}
     .stat-strip .wrap{grid-template-columns:repeat(2,1fr); row-gap:20px;}
+    .contact .wrap{grid-template-columns:1fr; gap:40px;}
+    .contact-form{grid-template-columns:1fr; padding:26px;}
+    .field.full,.form-foot,.form-status{grid-column:span 1;}
+    .nav-links{display:none;}
   }
 </style>
 </head>
@@ -168,8 +197,9 @@
       <li><a href="#work">Work</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#pricing" class="nav-cta">Get a Quote</a>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
   </div>
 </nav>
 
@@ -341,29 +371,79 @@
         <h3>Basic</h3>
         <div class="price-amt">$150<span>+</span></div>
         <ul><li>1-page landing site</li><li>Mobile responsive</li><li>Basic on-page SEO</li><li>3-day delivery</li></ul>
-        <a href="#" class="price-btn">Get Started</a>
+        <a href="#contact" class="price-btn" data-package="Basic">Get Started</a>
       </div>
       <div class="price-card featured reveal">
         <div class="price-tag">Most Popular</div>
         <h3>Standard</h3>
         <div class="price-amt">$450<span>+</span></div>
         <ul><li>Up to 5 pages</li><li>Custom design system</li><li>Contact form + SEO setup</li><li>7-day delivery</li></ul>
-        <a href="#" class="price-btn">Get Started</a>
+        <a href="#contact" class="price-btn" data-package="Standard">Get Started</a>
       </div>
       <div class="price-card reveal">
         <h3>Premium</h3>
         <div class="price-amt">$900<span>+</span></div>
         <ul><li>Full custom site build</li><li>E-commerce ready</li><li>Priority support</li><li>14-day delivery</li></ul>
-        <a href="#" class="price-btn">Get Started</a>
+        <a href="#contact" class="price-btn" data-package="Premium">Get Started</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="closing reveal">
+<section class="contact" id="contact">
   <div class="wrap">
-    <h2>Have a project in mind?</h2>
-    <a href="#pricing" class="btn-primary">Let's Build It</a>
+    <div class="intro reveal">
+      <span class="eyebrow">Contact</span>
+      <h2>Have a project in mind?</h2>
+      <p>Tell me a little about your business and what you need. I'll reply within 24 hours with next steps and a rough quote.</p>
+      <ul class="contact-meta">
+        <li><strong>Response</strong>Within 24 hours</li>
+        <li><strong>Work style</strong>Remote, worldwide</li>
+        <li><strong>Projects</strong>Small businesses &amp; startups</li>
+      </ul>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="field">
+        <label for="cf-name">Name <span class="req">*</span></label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Jane Smith" required>
+      </div>
+      <div class="field">
+        <label for="cf-email">Email <span class="req">*</span></label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required>
+      </div>
+      <div class="field">
+        <label for="cf-package">Package</label>
+        <select id="cf-package" name="package">
+          <option value="Not sure yet">Not sure yet</option>
+          <option value="Basic">Basic — $150+</option>
+          <option value="Standard">Standard — $450+</option>
+          <option value="Premium">Premium — $900+</option>
+          <option value="Other / Small fix">Other / Small fix</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="cf-budget">Budget</label>
+        <select id="cf-budget" name="budget">
+          <option value="Not specified">Prefer not to say</option>
+          <option value="Under $300">Under $300</option>
+          <option value="$300–$700">$300–$700</option>
+          <option value="$700–$1,500">$700–$1,500</option>
+          <option value="$1,500+">$1,500+</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="cf-message">Project details <span class="req">*</span></label>
+        <textarea id="cf-message" name="message" placeholder="What's your business, and what should the site do?" required></textarea>
+      </div>
+      <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="_subject" value="New inquiry from portfolio site">
+      <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+      <div class="form-foot">
+        <small>Your info is only used to reply to you.</small>
+        <button type="submit" class="btn-primary" id="cfSubmit">Send Message</button>
+      </div>
+    </form>
   </div>
 </section>
 
@@ -385,6 +465,37 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); } });
   }, {threshold:0.15});
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  // Package buttons -> preselect in contact form
+  document.querySelectorAll('[data-package]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ document.getElementById('cf-package').value = btn.dataset.package; });
+  });
+
+  // Contact form (Formspree, no page reload)
+  const form = document.getElementById('contactForm');
+  const statusEl = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('cfSubmit');
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    statusEl.className = 'form-status';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    try{
+      const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{ 'Accept':'application/json' } });
+      if(res.ok){
+        form.reset();
+        statusEl.textContent = "Thanks! Your message was sent — I'll get back to you within 24 hours.";
+        statusEl.className = 'form-status ok';
+      } else {
+        throw new Error();
+      }
+    } catch(err){
+      statusEl.textContent = 'Sorry, something went wrong. Please try again in a moment.';
+      statusEl.className = 'form-status err';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
 </script>
 
 </body>
