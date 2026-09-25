@@ -79,6 +79,7 @@
   .svc-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:30px;}
   .svc-card h3{font-size:1.2rem; margin-bottom:10px;}
   .svc-card p{font-size:0.92rem; color:var(--muted); margin-bottom:16px;}
+  .svc-tier{display:inline-block; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); margin-bottom:10px;}
   .svc-price{font-family:'JetBrains Mono', monospace; font-size:0.85rem; color:var(--brass); font-weight:500;}
 
   .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease;}
@@ -251,10 +252,11 @@
       <h2>Services Built Around Your Goal</h2>
     </div>
     <div class="services-grid">
-      <div class="svc-card reveal"><h3>Landing Pages</h3><p>A single, focused page built to convert visitors into leads or customers.</p><div class="svc-price">From $80</div></div>
-      <div class="svc-card reveal"><h3>Business Websites</h3><p>A full multi-section site — home, about, services, contact — built from scratch.</p><div class="svc-price">From $160</div></div>
-      <div class="svc-card reveal"><h3>Website Redesign</h3><p>A modern rebuild of an existing site — same content, dramatically better feel.</p><div class="svc-price">From $120</div></div>
+      <div class="svc-card reveal"><span class="svc-tier">Basic</span><h3>Landing Page</h3><p>A single, mobile-responsive page built to turn visitors into customers — perfect for a launch, promo, or new service.</p><div class="svc-price">$80 · 3-day delivery</div></div>
+      <div class="svc-card reveal"><span class="svc-tier">Standard</span><h3>Business Website</h3><p>Up to 5 pages with a contact form, speed optimization, and hosting setup — everything a small business needs to look professional.</p><div class="svc-price">$160 · 5-day delivery</div></div>
+      <div class="svc-card reveal"><span class="svc-tier">Premium</span><h3>Full Custom Website</h3><p>Up to 10 fully custom pages with email sign-up and autoresponder integration — built to grow with your business.</p><div class="svc-price">$280 · 7-day delivery</div></div>
     </div>
+    <p class="pricing-note">Every package works for a brand-new site or a redesign of the one you already have.</p>
   </div>
 </section>
 
