@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Web Designer & Front-End Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12211F;
+    --ink-deep:#0B1615;
+    --paper:#F6F3EC;
+    --paper-deep:#ECE7D9;
+    --brass:#B8863A;
+    --brass-light:#D9A75C;
+    --muted:#6B7570;
+    --line:#DCD5C2;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Manrope', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces', serif; font-weight:600; line-height:1.08; letter-spacing:-0.01em;}
+  a{text-decoration:none; color:inherit;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  section{padding:110px 0;}
+
+  .site-nav{position:sticky; top:0; z-index:100; background:rgba(18,33,31,0.97); backdrop-filter:blur(6px); border-bottom:1px solid rgba(216,167,92,0.18);}
+  .site-nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:18px 32px;}
+  .brand{font-family:'Fraunces', serif; font-weight:600; font-size:1.35rem; color:var(--paper);}
+  .brand span{color:var(--brass-light);}
+  .nav-links{display:flex; gap:32px; list-style:none;}
+  .nav-links a{color:var(--paper); font-size:0.9rem; font-weight:500; opacity:0.85;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{background:var(--brass-light); color:var(--ink-deep) !important; padding:10px 22px; border-radius:4px; font-weight:700; font-size:0.86rem; opacity:1 !important;}
+
+  .hero{padding:90px 0 100px; background:linear-gradient(180deg, var(--ink) 0%, var(--ink-deep) 100%); color:var(--paper);}
+  .hero .wrap{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
+  .eyebrow{display:inline-block; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--brass-light); font-weight:700; margin-bottom:18px;}
+  .hero h1{font-size:3.2rem; margin-bottom:22px;}
+  .hero h1 em{font-style:italic; color:var(--brass-light);}
+  .hero p.lead{font-size:1.05rem; color:#D3D9D6; max-width:460px; margin-bottom:34px;}
+  .hero-ctas{display:flex; gap:16px; margin-bottom:44px;}
+  .btn-primary{background:var(--brass-light); color:var(--ink-deep); padding:15px 30px; border-radius:4px; font-weight:700; font-size:0.94rem; display:inline-block;}
+  .btn-ghost{border:1px solid rgba(246,243,236,0.35); color:var(--paper); padding:15px 30px; border-radius:4px; font-weight:600; font-size:0.94rem; display:inline-block;}
+  .trust-row{display:flex; gap:38px;}
+  .trust-row div{display:flex; flex-direction:column;}
+  .trust-row strong{font-family:'Fraunces', serif; font-size:1.8rem; color:var(--brass-light);}
+  .trust-row span{font-size:0.76rem; color:#9FACA6; text-transform:uppercase; letter-spacing:0.05em;}
+
+  .build-panel{background:var(--ink-deep); border:1px solid rgba(216,167,92,0.22); border-radius:10px; overflow:hidden;}
+  .build-tabs{display:flex; gap:8px; padding:12px 16px; border-bottom:1px solid rgba(216,167,92,0.15);}
+  .dot{width:10px; height:10px; border-radius:50%; background:#3A4643;}
+  .build-body{display:grid; grid-template-columns:1fr; min-height:260px;}
+  #codeBody{font-family:'JetBrains Mono', monospace; font-size:0.8rem; color:#C9D6D1; padding:20px; white-space:pre-wrap; line-height:1.7;}
+  #codeBody .tag{color:var(--brass-light);}
+  #codeBody .str{color:#9FC9A8;}
+
+  .stat-strip{background:var(--paper-deep); border-bottom:1px solid var(--line);}
+  .stat-strip .wrap{display:grid; grid-template-columns:repeat(4,1fr); padding:34px 32px;}
+  .stat-strip .stat{text-align:center; border-right:1px solid var(--line);}
+  .stat-strip .stat:last-child{border-right:none;}
+  .stat-strip strong{font-family:'Fraunces', serif; font-size:1.9rem; display:block; color:var(--ink);}
+  .stat-strip span{font-size:0.76rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted);}
+
+  .section-head{text-align:center; max-width:620px; margin:0 auto 60px;}
+  .section-head .eyebrow{color:var(--brass);}
+  .section-head h2{font-size:2.3rem; color:var(--ink);}
+
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .svc-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:30px;}
+  .svc-card h3{font-size:1.2rem; margin-bottom:10px;}
+  .svc-card p{font-size:0.92rem; color:var(--muted); margin-bottom:16px;}
+  .svc-price{font-family:'JetBrains Mono', monospace; font-size:0.85rem; color:var(--brass); font-weight:500;}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+
+  .work-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:26px;}
+  .work-card{display:block; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:transform 0.25s ease, box-shadow 0.25s ease;}
+  .work-card:hover{transform:translateY(-6px); box-shadow:0 18px 34px rgba(18,33,31,0.12);}
+  .work-card.featured-work{border-color:var(--brass); grid-column:span 2;}
+  .work-visual{height:190px; position:relative; display:flex; align-items:flex-end; padding:18px;}
+  .wp-1{background:#DCE6E3;}
+  .wp-1 .swatch-nav{background:#1F4B47;}
+  .wp-1 .swatch-block{background:#D9A441;}
+  .wp-2{background:#EDE4DC;}
+  .wp-2 .swatch-nav{background:#6B4A32;}
+  .wp-2 .swatch-block{background:#B8863A;}
+  .wp-3{background:#E4E9ED;}
+  .wp-3 .swatch-nav{background:#22324A;}
+  .wp-3 .swatch-block{background:#4A7FB5;}
+  .wp-4{background:#E9EDE4;}
+  .wp-4 .swatch-nav{background:#2E4A2E;}
+  .wp-4 .swatch-block{background:#6B8E4E;}
+  .wp-5{background:#F3E4CE;}
+  .wp-5 .swatch-nav{background:#5A3626;}
+  .wp-5 .swatch-block{background:#C1704A;}
+  .swatch-nav{width:100%; height:10px; border-radius:2px; margin-bottom:8px; opacity:0.85;}
+  .swatch-block{width:60%; height:34px; border-radius:2px; opacity:0.9;}
+  .work-body{padding:24px;}
+  .work-body h3{font-size:1.25rem; margin-bottom:6px;}
+  .work-body p{font-size:0.88rem; color:var(--muted); margin-bottom:12px;}
+  .work-tags{display:flex; gap:8px; flex-wrap:wrap;}
+  .work-tags span{font-size:0.72rem; background:var(--paper-deep); padding:4px 10px; border-radius:20px; color:var(--muted); text-transform:uppercase; letter-spacing:0.03em;}
+  .credential-badge{display:inline-flex; align-items:center; gap:6px; background:rgba(184,134,58,0.12); color:var(--brass); font-size:0.74rem; font-weight:700; padding:6px 12px; border-radius:20px; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.03em;}
+
+  .process{background:var(--ink-deep); color:var(--paper);}
+  .process .section-head h2{color:var(--paper);}
+  .process .section-head .eyebrow{color:var(--brass-light);}
+  .process-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+  .process-step{padding:28px; border:1px solid rgba(216,167,92,0.18); border-radius:8px;}
+  .process-step .num{font-family:'Fraunces', serif; font-size:2.4rem; color:var(--brass-light); margin-bottom:10px;}
+  .process-step h4{font-size:1.1rem; margin-bottom:10px; color:var(--paper);}
+  .process-step p{font-size:0.9rem; color:#B7C2BD;}
+
+  .testimonial-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .t-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:30px;}
+  .t-stars{color:var(--brass); margin-bottom:14px;}
+  .t-card p{font-size:0.94rem; margin-bottom:18px;}
+  .t-name{font-weight:700; font-size:0.9rem;}
+  .t-role{font-size:0.8rem; color:var(--muted);}
+
+  .pricing{background:var(--paper-deep);}
+  .pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .price-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:36px 30px; position:relative;}
+  .price-card.featured{border-color:var(--brass); box-shadow:0 20px 40px rgba(184,134,58,0.16);}
+  .price-tag{position:absolute; top:-14px; right:24px; background:var(--brass-light); color:var(--ink-deep); font-size:0.72rem; font-weight:700; text-transform:uppercase; padding:6px 14px; border-radius:20px;}
+  .price-card h3{font-size:1.35rem; margin-bottom:6px;}
+  .price-amt{font-family:'Fraunces', serif; font-size:2.2rem; color:var(--brass); margin-bottom:18px;}
+  .price-amt span{font-size:0.88rem; font-family:'Manrope', sans-serif; color:var(--muted);}
+  .price-card ul{list-style:none; margin-bottom:26px;}
+  .price-card li{font-size:0.9rem; color:var(--muted); padding:8px 0; border-bottom:1px solid var(--line);}
+  .price-card li:last-child{border-bottom:none;}
+  .price-btn{display:block; text-align:center; padding:14px; border-radius:4px; font-weight:700; font-size:0.9rem; border:1px solid var(--ink); color:var(--ink);}
+  .price-card.featured .price-btn{background:var(--ink); color:var(--paper);}
+
+  .closing{background:var(--ink); color:var(--paper); text-align:center;}
+  .closing h2{font-size:2.5rem; margin-bottom:26px;}
+
+  footer{background:var(--ink-deep); color:#9FACA6; padding:50px 0 30px; font-size:0.85rem;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer .foot-links{display:flex; gap:20px;}
+
+  @media(max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .services-grid,.process-grid,.testimonial-grid,.pricing-grid{grid-template-columns:1fr;}
+    .work-grid{grid-template-columns:1fr;}
+    .work-card.featured-work{grid-column:span 1;}
+    .stat-strip .wrap{grid-template-columns:repeat(2,1fr); row-gap:20px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <div class="brand">Your<span>Name</span></div>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="#pricing" class="nav-cta">Get a Quote</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Web Design & Front-End Development</span>
+      <h1>Websites that feel <em>considered</em>, not templated.</h1>
+      <p class="lead">I design and build clean, fast, custom websites for small businesses and startups — no drag-and-drop builders, no bloated themes. Just code that works.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn-primary">View My Work</a>
+        <a href="#pricing" class="btn-ghost">See Pricing</a>
+      </div>
+      <div class="trust-row">
+        <div><strong>5</strong><span>Concept Projects</span></div>
+        <div><strong>4.9★</strong><span>Client Rating</span></div>
+        <div><strong>&lt;24h</strong><span>Response Time</span></div>
+      </div>
+    </div>
+    <div class="build-panel">
+      <div class="build-tabs"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="build-body">
+        <div id="codeBody">&lt;<span class="tag">section</span> <span class="tag">class</span>=<span class="str">"hero"</span>&gt;
+  &lt;<span class="tag">h1</span>&gt;Built for your business&lt;/<span class="tag">h1</span>&gt;
+  &lt;<span class="tag">p</span>&gt;Fast. Clean. Custom.&lt;/<span class="tag">p</span>&gt;
+  &lt;<span class="tag">a</span> <span class="tag">class</span>=<span class="str">"btn"</span>&gt;Get Started&lt;/<span class="tag">a</span>&gt;
+&lt;/<span class="tag">section</span>&gt;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="wrap">
+    <div class="stat"><strong>5</strong><span>Concept Projects</span></div>
+    <div class="stat"><strong>4</strong><span>Industries Covered</span></div>
+    <div class="stat"><strong>4.9★</strong><span>Client Rating</span></div>
+    <div class="stat"><strong>&lt;24h</strong><span>Response Time</span></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What I Offer</span>
+      <h2>Services Built Around Your Goal</h2>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal"><h3>Landing Pages</h3><p>A single, focused page built to convert visitors into leads or customers.</p><div class="svc-price">From $150</div></div>
+      <div class="svc-card reveal"><h3>Business Websites</h3><p>A full multi-section site — home, about, services, contact — built from scratch.</p><div class="svc-price">From $450</div></div>
+      <div class="svc-card reveal"><h3>E-Commerce Setup</h3><p>A working online store, product pages, and a checkout flow that just works.</p><div class="svc-price">From $600</div></div>
+      <div class="svc-card reveal"><h3>Website Redesign</h3><p>A modern rebuild of an existing site — same content, dramatically better feel.</p><div class="svc-price">From $350</div></div>
+      <div class="svc-card reveal"><h3>Speed & SEO Fixes</h3><p>Technical cleanup to make your existing site faster and easier to find.</p><div class="svc-price">From $120</div></div>
+      <div class="svc-card reveal"><h3>Bug Fixes & Tweaks</h3><p>Small, fast fixes — broken layouts, styling issues, minor functionality.</p><div class="svc-price">From $60</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Selected Work</span>
+      <h2>Concept Projects, Built End-To-End</h2>
+    </div>
+    <div class="work-grid">
+
+      <a href="./postpartum-care/" class="work-card featured-work reveal" target="_blank" rel="noopener">
+        <div class="work-visual wp-5"><div><div class="swatch-nav"></div><div class="swatch-block"></div></div></div>
+        <div class="work-body">
+          <div class="credential-badge">Licensed Midwife · Built by me</div>
+          <h3>Postpartum Care House Komorebi</h3>
+          <p>A concept site for a postpartum care facility, designed around the real rhythm of early recovery — day-by-day care schedule, empathetic tone, warm palette.</p>
+          <div class="work-tags"><span>Healthcare</span><span>Japanese</span><span>Custom Design</span></div>
+        </div>
+      </a>
+
+      <a href="./fernweh-studio/" class="work-card reveal" target="_blank" rel="noopener">
+        <div class="work-visual wp-1"><div><div class="swatch-nav"></div><div class="swatch-block"></div></div></div>
+        <div class="work-body">
+          <h3>Fernweh Studio</h3>
+          <p>A small-group travel agency concept — custom route-map illustration, hosted-trip cards, and a clean booking-style pricing structure.</p>
+          <div class="work-tags"><span>Travel</span><span>English</span></div>
+        </div>
+      </a>
+
+      <div class="work-card reveal">
+        <div class="work-visual wp-2"><div><div class="swatch-nav"></div><div class="swatch-block"></div></div></div>
+        <div class="work-body">
+          <h3>Loom & Larch</h3>
+          <p>A furniture e-commerce concept — warm, tactile visual language for handmade home goods.</p>
+          <div class="work-tags"><span>E-Commerce</span><span>Coming Soon</span></div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="work-visual wp-3"><div><div class="swatch-nav"></div><div class="swatch-block"></div></div></div>
+        <div class="work-body">
+          <h3>Northbound Analytics</h3>
+          <p>A SaaS marketing site concept — clean, confident, data-forward design system.</p>
+          <div class="work-tags"><span>SaaS</span><span>Coming Soon</span></div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="work-visual wp-4"><div><div class="swatch-nav"></div><div class="swatch-block"></div></div></div>
+        <div class="work-body">
+          <h3>Kettlebell Club</h3>
+          <p>A fitness studio concept — bold, energetic, built to drive class sign-ups.</p>
+          <div class="work-tags"><span>Fitness</span><span>Coming Soon</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2>From Idea To Live Site In Four Steps</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal"><div class="num">01</div><h4>Discovery</h4><p>We talk through your goals, audience, and what the site needs to do.</p></div>
+      <div class="process-step reveal"><div class="num">02</div><h4>Design</h4><p>A custom layout and visual direction, tailored to your brand — no templates.</p></div>
+      <div class="process-step reveal"><div class="num">03</div><h4>Build</h4><p>Clean, fast, hand-coded implementation with revisions along the way.</p></div>
+      <div class="process-step reveal"><div class="num">04</div><h4>Launch</h4><p>Final QA, deployment, and a walkthrough so you're set up to manage it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Client Feedback</span>
+      <h2>What People Say</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p>"Fast turnaround, and the design felt genuinely custom — not another template with my logo slapped on."</p>
+        <div class="t-name">Sample Client</div>
+        <div class="t-role">Small Business Owner</div>
+      </div>
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p>"Communicated clearly at every step and delivered exactly what we discussed, on time."</p>
+        <div class="t-name">Sample Client</div>
+        <div class="t-role">Startup Founder</div>
+      </div>
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p>"The site loads instantly and looks better than sites that cost three times as much."</p>
+        <div class="t-name">Sample Client</div>
+        <div class="t-role">Studio Owner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2>Simple, Transparent Packages</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <h3>Basic</h3>
+        <div class="price-amt">$150<span>+</span></div>
+        <ul><li>1-page landing site</li><li>Mobile responsive</li><li>Basic on-page SEO</li><li>3-day delivery</li></ul>
+        <a href="#" class="price-btn">Get Started</a>
+      </div>
+      <div class="price-card featured reveal">
+        <div class="price-tag">Most Popular</div>
+        <h3>Standard</h3>
+        <div class="price-amt">$450<span>+</span></div>
+        <ul><li>Up to 5 pages</li><li>Custom design system</li><li>Contact form + SEO setup</li><li>7-day delivery</li></ul>
+        <a href="#" class="price-btn">Get Started</a>
+      </div>
+      <div class="price-card reveal">
+        <h3>Premium</h3>
+        <div class="price-amt">$900<span>+</span></div>
+        <ul><li>Full custom site build</li><li>E-commerce ready</li><li>Priority support</li><li>14-day delivery</li></ul>
+        <a href="#" class="price-btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing reveal">
+  <div class="wrap">
+    <h2>Have a project in mind?</h2>
+    <a href="#pricing" class="btn-primary">Let's Build It</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="year"></span> Your Name. All rights reserved.</div>
+    <div class="foot-links">
+      <a href="#">Fiverr</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
