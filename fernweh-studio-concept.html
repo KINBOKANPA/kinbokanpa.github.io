@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fernweh Studio — Small-Group Travel, Done Right</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#1F4B47;
+    --teal-deep:#123331;
+    --mustard:#D9A441;
+    --mustard-light:#E9C077;
+    --sand:#F0EBDE;
+    --sand-deep:#E4DCC7;
+    --ink:#1B2422;
+    --muted:#5B6560;
+    --line:#D8D0BA;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:'Big Shoulders Display', sans-serif; font-weight:700; letter-spacing:0.01em; text-transform:none;}
+
+  .eyebrow{
+    font-size:12.5px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--mustard); display:inline-flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--mustard); display:inline-block;}
+
+  header.nav{position:sticky; top:0; z-index:50; background:rgba(240,235,222,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1120px; margin:0 auto; padding:18px 28px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{font-family:'Big Shoulders Display', sans-serif; font-size:22px; font-weight:800; letter-spacing:0.02em;}
+  .brand span{color:var(--mustard);}
+  .nav-links{display:none; gap:30px; font-size:14px; font-weight:600;}
+  @media (min-width:760px){.nav-links{display:flex;}}
+  .nav-links a{color:var(--muted); transition:color .2s;}
+  .nav-links a:hover{color:var(--ink);}
+
+  .btn{display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; padding:13px 26px; border-radius:2px; border:1px solid transparent; cursor:pointer; transition:transform .2s ease, background .2s ease, border-color .2s ease;}
+  .btn-primary{background:var(--teal); color:var(--sand);}
+  .btn-primary:hover{background:var(--teal-deep); transform:translateY(-2px);}
+  .btn-ghost{border-color:var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--teal); transform:translateY(-2px);}
+  .btn-on-dark{border-color:rgba(240,235,222,0.3); color:var(--sand);}
+  .btn-on-dark:hover{border-color:var(--mustard-light); color:var(--mustard-light);}
+  .nav-cta{display:none;}
+  @media (min-width:760px){.nav-cta{display:inline-flex; padding:10px 20px; font-size:13px;}}
+
+  /* Hero with route-map signature */
+  .hero{padding:72px 0 60px; position:relative; overflow:hidden;}
+  .hero-inner{position:relative; z-index:1; display:grid; grid-template-columns:1fr; gap:40px;}
+  @media (min-width:900px){.hero-inner{grid-template-columns:1.1fr 1fr; align-items:center;}}
+  .hero h1{font-size:clamp(38px,6vw,64px); line-height:1.02; margin-bottom:22px;}
+  .hero h1 em{font-style:normal; color:var(--teal);}
+  .hero p.lede{font-size:16.5px; color:var(--muted); max-width:460px; margin-bottom:30px;}
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px;}
+  .trust-row{display:flex; gap:28px; margin-top:36px; flex-wrap:wrap;}
+  .trust-row div{font-size:13px; color:var(--muted);}
+  .trust-row strong{display:block; font-family:'Big Shoulders Display',sans-serif; font-size:26px; color:var(--teal); font-weight:700;}
+
+  .route-panel{
+    background:var(--teal); border-radius:6px; padding:34px 30px; position:relative; overflow:hidden; min-height:380px;
+  }
+  .route-panel svg{width:100%; height:auto; position:relative; z-index:1;}
+  .route-caption{margin-top:18px; color:var(--sand); font-size:13px; opacity:0.85; position:relative; z-index:1;}
+
+  .stat-strip{background:var(--card); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .stat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:0;}
+  @media (min-width:720px){.stat-grid{grid-template-columns:repeat(4,1fr);}}
+  .stat{padding:30px 24px; border-right:1px solid var(--line); border-bottom:1px solid var(--line);}
+  @media (min-width:720px){.stat{border-bottom:none;}}
+  .stat:nth-child(2n){border-right:none;}
+  @media (min-width:720px){.stat:nth-child(2n){border-right:1px solid var(--line);} .stat:last-child{border-right:none;}}
+  .stat .num{font-family:'Big Shoulders Display', sans-serif; font-size:30px; font-weight:800; color:var(--teal);}
+  .stat .label{font-size:12px; color:var(--muted); margin-top:4px; text-transform:uppercase; letter-spacing:0.05em;}
+
+  section{padding:92px 0;}
+  .section-head{max-width:600px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,38px);}
+  .section-head p{color:var(--muted); margin-top:14px; font-size:15px;}
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+
+  /* Empathy */
+  .empathy{background:var(--teal-deep); color:var(--sand);}
+  .empathy .eyebrow{color:var(--mustard-light);}
+  .empathy .eyebrow::before{background:var(--mustard-light);}
+  .empathy h2{color:var(--sand); max-width:640px;}
+  .empathy p.body-text{max-width:600px; color:#C9D6D2; font-size:15.5px; margin-top:18px;}
+
+  /* Trip cards */
+  .trip-grid{display:grid; grid-template-columns:1fr; gap:24px;}
+  @media (min-width:760px){.trip-grid{grid-template-columns:repeat(3,1fr);}}
+  .trip-card{background:var(--card); border:1px solid var(--line); overflow:hidden; display:flex; flex-direction:column; transition:transform .25s ease, box-shadow .25s ease;}
+  .trip-card:hover{transform:translateY(-4px); box-shadow:0 16px 30px -18px rgba(27,36,34,0.35);}
+  .trip-visual{height:170px; position:relative; overflow:hidden;}
+  .trip-visual svg{width:100%; height:100%; display:block;}
+  .trip-meta{padding:22px 24px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .trip-meta .k{font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--mustard); font-weight:700;}
+  .trip-meta h3{font-size:22px;}
+  .trip-meta p{font-size:13.5px; color:var(--muted); flex:1;}
+  .trip-price{font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:18px; color:var(--teal); padding-top:10px; border-top:1px solid var(--line); margin-top:6px;}
+
+  .tv-1{background:linear-gradient(135deg,#DCE6E3,#C4D6D0);}
+  .tv-2{background:linear-gradient(135deg,#EFE1C2,#E3CE9C);}
+  .tv-3{background:linear-gradient(135deg,#E3D3D8,#D3B9C1);}
+
+  /* Process */
+  .process-grid{display:grid; grid-template-columns:1fr; gap:32px;}
+  @media (min-width:760px){.process-grid{grid-template-columns:repeat(4,1fr);}}
+  .step{border-top:2px solid var(--teal); padding-top:18px;}
+  .step .num{font-family:'Big Shoulders Display',sans-serif; color:var(--teal); font-size:15px; font-weight:800; display:block; margin-bottom:10px;}
+  .step h3{font-size:18px; margin-bottom:8px;}
+  .step p{font-size:14px; color:var(--muted);}
+
+  /* Testimonials */
+  .test-grid{display:grid; grid-template-columns:1fr; gap:24px;}
+  @media (min-width:760px){.test-grid{grid-template-columns:repeat(3,1fr);}}
+  .test-card{background:var(--card); border:1px solid var(--line); padding:26px 24px; display:flex; flex-direction:column; gap:14px;}
+  .stars{color:var(--mustard); font-size:14px; letter-spacing:2px;}
+  .test-card p.quote{font-size:14.5px; flex:1;}
+  .test-foot{font-size:13px; color:var(--muted); font-weight:600;}
+
+  /* Pricing */
+  .pricing{background:var(--card); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .price-grid{display:grid; grid-template-columns:1fr; gap:24px;}
+  @media (min-width:820px){.price-grid{grid-template-columns:repeat(3,1fr);}}
+  .price-card{border:1px solid var(--line); padding:30px 26px; display:flex; flex-direction:column; gap:16px; background:var(--sand);}
+  .price-card.featured{border-color:var(--mustard); background:var(--teal); color:var(--sand);}
+  .price-card.featured .price-desc, .price-card.featured .price-list li{color:#CBD9D5;}
+  .badge{display:inline-block; background:var(--mustard); color:var(--teal-deep); font-size:11px; font-weight:800; padding:5px 12px; border-radius:20px; align-self:flex-start;}
+  .price-tier{font-size:12.5px; letter-spacing:0.1em; font-weight:700; color:var(--teal); text-transform:uppercase;}
+  .price-card.featured .price-tier{color:var(--mustard-light);}
+  .price-amount{font-family:'Big Shoulders Display',sans-serif; font-size:32px; font-weight:800;}
+  .price-desc{font-size:13.5px; color:var(--muted);}
+  .price-list{list-style:none; display:flex; flex-direction:column; gap:9px;}
+  .price-list li{font-size:13.5px; padding-bottom:9px; border-bottom:1px solid var(--line); display:flex; gap:8px;}
+  .price-list li::before{content:"—"; color:var(--mustard);}
+
+  .closing{background:var(--teal-deep); color:var(--sand); text-align:center; padding:100px 0;}
+  .closing-inner{max-width:600px; margin:0 auto;}
+  .closing h2{font-size:clamp(28px,4vw,42px); margin-bottom:20px; color:var(--sand);}
+  .closing p{color:#C9D6D2; margin-bottom:32px; font-size:15.5px;}
+  .closing-ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  footer{padding:32px 0; background:var(--teal-deep); border-top:1px solid rgba(240,235,222,0.12);}
+  .footer-inner{display:flex; flex-direction:column; gap:12px; align-items:center; text-align:center; color:#9BB0AB; font-size:12.5px;}
+  .footer-links{display:flex; gap:20px;}
+  .footer-links a{color:#9BB0AB;}
+  .footer-links a:hover{color:var(--mustard-light);}
+  .disclaimer{color:#7E948E; font-size:11.5px; max-width:520px;}
+
+  ::selection{background:var(--mustard); color:var(--teal-deep);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">FERN<span>WEH</span></div>
+    <nav class="nav-links">
+      <a href="#trips">Trips</a>
+      <a href="#how">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#" class="btn btn-primary nav-cta">Plan Your Trip</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">Small-Group Travel</div>
+      <h1>Travel far.<br>Skip the <em>planning stress</em>.</h1>
+      <p class="lede">Fernweh Studio designs small-group trips (8 travelers max) to places worth the jet lag — with every logistics headache handled before you land.</p>
+      <div class="hero-ctas">
+        <a href="#trips" class="btn btn-primary">See Upcoming Trips</a>
+        <a href="#how" class="btn btn-ghost">How It Works</a>
+      </div>
+      <div class="trust-row">
+        <div><strong>27</strong>Trips Hosted</div>
+        <div><strong>8</strong>Max Group Size</div>
+        <div><strong>4.9★</strong>Traveler Rating</div>
+      </div>
+    </div>
+
+    <div class="route-panel reveal">
+      <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="contour" width="40" height="40" patternUnits="userSpaceOnUse">
+            <circle cx="20" cy="20" r="16" fill="none" stroke="#2E5C57" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="320" fill="url(#contour)" opacity="0.5"/>
+        <path d="M 40 240 Q 100 180 150 200 T 260 120 T 350 90" fill="none" stroke="#E9C077" stroke-width="2.5" stroke-dasharray="6 6"/>
+        <circle cx="40" cy="240" r="6" fill="#F0EBDE"/>
+        <circle cx="150" cy="200" r="6" fill="#F0EBDE"/>
+        <circle cx="260" cy="120" r="6" fill="#F0EBDE"/>
+        <circle cx="350" cy="90" r="8" fill="#D9A441"/>
+        <text x="40" y="262" fill="#F0EBDE" font-size="12" font-family="Work Sans">Depart</text>
+        <text x="150" y="222" fill="#F0EBDE" font-size="12" font-family="Work Sans">Stop 1</text>
+        <text x="255" y="142" fill="#F0EBDE" font-size="12" font-family="Work Sans">Stop 2</text>
+        <text x="325" y="70" fill="#D9A441" font-size="13" font-family="Work Sans" font-weight="700">Basecamp</text>
+      </svg>
+      <div class="route-caption">Every trip is mapped out before you book — no guessing what happens next.</div>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat"><div class="num">27</div><div class="label">Trips Hosted</div></div>
+      <div class="stat"><div class="num">190+</div><div class="label">Travelers</div></div>
+      <div class="stat"><div class="num">4.9★</div><div class="label">Average Rating</div></div>
+      <div class="stat"><div class="num">8</div><div class="label">Max Group Size</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="empathy">
+  <div class="wrap">
+    <div class="eyebrow reveal">The Problem With Planning It Yourself</div>
+    <h2 class="reveal">40 browser tabs later, you still haven't booked anything.</h2>
+    <p class="body-text reveal">Between comparing flights, reading twelve conflicting blog posts about where to stay, and wondering if the "must-see" spot is actually a tourist trap — trip planning eats the excitement right out of traveling. Fernweh Studio exists so you can say yes to the trip without becoming a part-time travel agent yourself.</p>
+  </div>
+</section>
+
+<section id="trips">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Upcoming Trips</div>
+      <h2>Where we're headed next</h2>
+      <p>Small groups, fixed departure dates, everything arranged in advance.</p>
+    </div>
+    <div class="trip-grid reveal">
+      <div class="trip-card">
+        <div class="trip-visual tv-1">
+          <svg viewBox="0 0 400 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="170" fill="#DCE6E3"/>
+            <circle cx="330" cy="45" r="26" fill="#E9C077"/>
+            <polygon points="0,170 70,70 110,120 150,55 210,120 250,80 300,170" fill="#3E6660"/>
+            <polygon points="70,70 90,95 50,95" fill="#F0EBDE" opacity="0.85"/>
+            <polygon points="150,55 168,80 132,80" fill="#F0EBDE" opacity="0.85"/>
+            <polygon points="120,170 160,105 200,170" fill="#1F4B47"/>
+            <polygon points="270,170 320,90 380,170" fill="#2E5C57"/>
+            <rect x="185" y="140" width="30" height="30" fill="#6B4A32"/>
+            <polygon points="180,140 200,120 220,140" fill="#4A3323"/>
+          </svg>
+        </div>
+        <div class="trip-meta">
+          <div class="k">10 Days · Spring</div>
+          <h3>Dolomites Basecamp</h3>
+          <p>Hut-to-hut hiking through the Italian Alps, with two rest days built in for slow mornings and long lunches.</p>
+          <div class="trip-price">From $2,450</div>
+        </div>
+      </div>
+      <div class="trip-card">
+        <div class="trip-visual tv-2">
+          <svg viewBox="0 0 400 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="170" fill="#EFE1C2"/>
+            <circle cx="70" cy="50" r="28" fill="#D9A441" opacity="0.9"/>
+            <polygon points="0,170 400,170 400,150 0,150" fill="#B98A4A" opacity="0.5"/>
+            <rect x="160" y="40" width="14" height="120" fill="#B24C3E"/>
+            <rect x="266" y="40" width="14" height="120" fill="#B24C3E"/>
+            <rect x="145" y="30" width="150" height="16" fill="#B24C3E"/>
+            <rect x="150" y="55" width="140" height="10" fill="#8C3A2E"/>
+            <polygon points="330,170 330,110 355,90 380,110 380,170" fill="#3E6660"/>
+            <polygon points="320,110 390,110 355,80" fill="#2E5C57"/>
+            <circle cx="230" cy="150" r="10" fill="#6B8E4E"/>
+            <circle cx="250" cy="155" r="8" fill="#6B8E4E"/>
+          </svg>
+        </div>
+        <div class="trip-meta">
+          <div class="k">8 Days · Fall</div>
+          <h3>Kyoto & The Backroads</h3>
+          <p>Temples at sunrise before the crowds, plus a two-night stay in a mountain ryokan outside the city.</p>
+          <div class="trip-price">From $2,890</div>
+        </div>
+      </div>
+      <div class="trip-card">
+        <div class="trip-visual tv-3">
+          <svg viewBox="0 0 400 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="170" fill="#E3D3D8"/>
+            <circle cx="340" cy="40" r="24" fill="#D9A441"/>
+            <rect x="0" y="120" width="400" height="50" fill="#C9A2AC"/>
+            <polygon points="40,120 90,60 140,120" fill="#B24C3E"/>
+            <rect x="55" y="120" width="60" height="0" fill="none"/>
+            <rect x="50" y="95" width="80" height="10" fill="#8C3A2E"/>
+            <polygon points="180,120 230,70 280,120" fill="#D9A441"/>
+            <rect x="192" y="98" width="76" height="8" fill="#B98A4A"/>
+            <rect x="0" y="150" width="400" height="6" fill="#8C3A2E" opacity="0.6"/>
+            <rect x="0" y="160" width="400" height="4" fill="#3E6660" opacity="0.5"/>
+            <circle cx="320" cy="140" r="14" fill="#6B8E4E"/>
+            <circle cx="300" cy="150" r="10" fill="#3E6660"/>
+          </svg>
+        </div>
+        <div class="trip-meta">
+          <div class="k">7 Days · Winter</div>
+          <h3>Oaxaca Food & Craft</h3>
+          <p>Market visits, a mezcal tasting outside the tourist circuit, and a hands-on day with local weavers.</p>
+          <div class="trip-price">From $1,980</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">How It Works</div>
+      <h2>From "maybe someday" to boarding pass</h2>
+    </div>
+    <div class="process-grid reveal">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>Pick a trip</h3>
+        <p>Browse upcoming departures and pick the one that fits your dates and pace.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>Reserve your spot</h3>
+        <p>A deposit holds your place in the group of up to 8 travelers.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h3>We handle logistics</h3>
+        <p>Lodging, local transport, and daily plans are arranged before you arrive.</p>
+      </div>
+      <div class="step">
+        <span class="num">04</span>
+        <h3>You just show up</h3>
+        <p>Meet your group, and let the trip you didn't have to plan actually happen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Traveler Notes</div>
+      <h2>What past groups say</h2>
+    </div>
+    <div class="test-grid reveal">
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">I didn't open a single spreadsheet. Everything was just... handled. First trip like this and definitely not my last.</p>
+        <div class="test-foot">Priya M. — Dolomites Basecamp</div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Small group size made all the difference. It never felt like a tour bus — more like traveling with friends who happened to know the area.</p>
+        <div class="test-foot">Jordan K. — Kyoto & The Backroads</div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">The mezcal afternoon wasn't even on the itinerary I expected — it was better than anything I would've found on my own.</p>
+        <div class="test-foot">Sam R. — Oaxaca Food & Craft</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">What's Included</div>
+      <h2>Three trip styles</h2>
+    </div>
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <div class="price-tier">Basecamp</div>
+        <div class="price-amount">$1,980+</div>
+        <div class="price-desc">One home base, day trips out</div>
+        <ul class="price-list">
+          <li>Lodging + local transport</li>
+          <li>Daily group activity</li>
+          <li>2–3 free days to explore</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">View Trips</a>
+      </div>
+      <div class="price-card featured">
+        <span class="badge">Most Booked</span>
+        <div class="price-tier">Multi-Stop</div>
+        <div class="price-amount">$2,450+</div>
+        <div class="price-desc">2–3 locations, connected route</div>
+        <ul class="price-list">
+          <li>All lodging + transfers</li>
+          <li>Daily guided activity</li>
+          <li>Local guide at each stop</li>
+        </ul>
+        <a href="#" class="btn btn-on-dark">View Trips</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Custom Group</div>
+        <div class="price-amount">Let's Talk</div>
+        <div class="price-desc">Private trip for your own group</div>
+        <ul class="price-list">
+          <li>Choose your dates + route</li>
+          <li>6–12 traveler groups</li>
+          <li>Fully custom itinerary</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Start a Request</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Questions</div>
+      <h2>Before you book</h2>
+    </div>
+    <div class="reveal" style="display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line);">
+      <details style="background:var(--card); padding:20px 24px;">
+        <summary style="cursor:pointer; font-weight:700; font-size:15px;">Do I need to know anyone else on the trip?</summary>
+        <p style="margin-top:12px; font-size:13.5px; color:var(--muted);">Not at all — most travelers join solo or in pairs. Groups are kept small so it never feels anonymous.</p>
+      </details>
+      <details style="background:var(--card); padding:20px 24px;">
+        <summary style="cursor:pointer; font-weight:700; font-size:15px;">What's not included in the price?</summary>
+        <p style="margin-top:12px; font-size:13.5px; color:var(--muted);">International flights to the starting city, travel insurance, and personal spending are on you — everything else is covered.</p>
+      </details>
+      <details style="background:var(--card); padding:20px 24px;">
+        <summary style="cursor:pointer; font-weight:700; font-size:15px;">Can I request a custom trip for my friend group?</summary>
+        <p style="margin-top:12px; font-size:13.5px; color:var(--muted);">Yes — the Custom Group option lets you pick the route and dates for a private departure of 6–12 people.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap closing-inner">
+    <div class="eyebrow">Fernweh (n.) — a longing for far-off places</div>
+    <h2>Stop researching. Start packing.</h2>
+    <p>Spots are limited to 8 travelers per trip, and popular departures fill early.</p>
+    <div class="closing-ctas">
+      <a href="#trips" class="btn btn-primary">See Upcoming Trips</a>
+      <a href="#" class="btn btn-on-dark">Ask a Question</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>Fernweh Studio — Small-Group Travel</div>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">Trip Calendar</a>
+      <a href="#">Contact</a>
+    </div>
+    <p class="disclaimer">This is a concept website created for portfolio purposes and does not represent a real travel agency.</p>
+  </div>
+</footer>
+
+<script>
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = document.querySelectorAll('.reveal');
+  if(reduceMotion){
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+</script>
+
+</body>
+</html>
