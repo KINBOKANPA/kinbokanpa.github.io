@@ -140,6 +140,9 @@
   .price-card ul{list-style:none; margin-bottom:26px;}
   .price-card li{font-size:0.9rem; color:var(--muted); padding:8px 0; border-bottom:1px solid var(--line);}
   .price-card li:last-child{border-bottom:none;}
+  .price-card li .express{display:block; font-size:0.78rem; color:var(--brass);}
+  .pricing-note{text-align:center; margin-top:36px; font-size:0.9rem; color:var(--muted);}
+  .pricing-note a{color:var(--brass); font-weight:700; border-bottom:1px solid currentColor;}
   .price-btn{display:block; text-align:center; padding:14px; border-radius:4px; font-weight:700; font-size:0.9rem; border:1px solid var(--ink); color:var(--ink);}
   .price-card.featured .price-btn{background:var(--ink); color:var(--paper);}
 
@@ -248,8 +251,8 @@
       <h2>Services Built Around Your Goal</h2>
     </div>
     <div class="services-grid">
-      <div class="svc-card reveal"><h3>Landing Pages</h3><p>A single, focused page built to convert visitors into leads or customers.</p><div class="svc-price">From $150</div></div>
-      <div class="svc-card reveal"><h3>Business Websites</h3><p>A full multi-section site — home, about, services, contact — built from scratch.</p><div class="svc-price">From $450</div></div>
+      <div class="svc-card reveal"><h3>Landing Pages</h3><p>A single, focused page built to convert visitors into leads or customers.</p><div class="svc-price">From $80</div></div>
+      <div class="svc-card reveal"><h3>Business Websites</h3><p>A full multi-section site — home, about, services, contact — built from scratch.</p><div class="svc-price">From $160</div></div>
       <div class="svc-card reveal"><h3>E-Commerce Setup</h3><p>A working online store, product pages, and a checkout flow that just works.</p><div class="svc-price">From $600</div></div>
       <div class="svc-card reveal"><h3>Website Redesign</h3><p>A modern rebuild of an existing site — same content, dramatically better feel.</p><div class="svc-price">From $350</div></div>
       <div class="svc-card reveal"><h3>Speed & SEO Fixes</h3><p>Technical cleanup to make your existing site faster and easier to find.</p><div class="svc-price">From $120</div></div>
@@ -369,24 +372,25 @@
     <div class="pricing-grid">
       <div class="price-card reveal">
         <h3>Basic</h3>
-        <div class="price-amt">$150<span>+</span></div>
-        <ul><li>1-page landing site</li><li>Mobile responsive</li><li>Basic on-page SEO</li><li>3-day delivery</li></ul>
+        <div class="price-amt">$80</div>
+        <ul><li>Single landing page</li><li>Mobile responsive</li><li>Content upload + social media icons</li><li>2 revisions</li><li>3-day delivery <small class="express">(1-day express +$25)</small></li></ul>
         <a href="#contact" class="price-btn" data-package="Basic">Get Started</a>
       </div>
       <div class="price-card featured reveal">
         <div class="price-tag">Most Popular</div>
         <h3>Standard</h3>
-        <div class="price-amt">$450<span>+</span></div>
-        <ul><li>Up to 5 pages</li><li>Custom design system</li><li>Contact form + SEO setup</li><li>7-day delivery</li></ul>
+        <div class="price-amt">$160</div>
+        <ul><li>Up to 5 pages</li><li>Contact / opt-in form</li><li>Speed optimization + hosting setup</li><li>3 revisions</li><li>5-day delivery <small class="express">(2-day express +$40)</small></li></ul>
         <a href="#contact" class="price-btn" data-package="Standard">Get Started</a>
       </div>
       <div class="price-card reveal">
         <h3>Premium</h3>
-        <div class="price-amt">$900<span>+</span></div>
-        <ul><li>Full custom site build</li><li>E-commerce ready</li><li>Priority support</li><li>14-day delivery</li></ul>
+        <div class="price-amt">$280</div>
+        <ul><li>Up to 10 pages, fully custom</li><li>Contact + email sign-up forms</li><li>Autoresponder integration</li><li>Speed optimization + hosting setup</li><li>5 revisions</li><li>7-day delivery <small class="express">(3-day express +$60)</small></li></ul>
         <a href="#contact" class="price-btn" data-package="Premium">Get Started</a>
       </div>
     </div>
+    <p class="pricing-note">Prefer to order through Fiverr? The same packages are available on <a href="https://www.fiverr.com/daisy_anaya/create-a-high-converting-landing-page-for-you" target="_blank" rel="noopener">my Fiverr gig</a>.</p>
   </div>
 </section>
 
@@ -416,9 +420,9 @@
         <label for="cf-package">Package</label>
         <select id="cf-package" name="package">
           <option value="Not sure yet">Not sure yet</option>
-          <option value="Basic">Basic — $150+</option>
-          <option value="Standard">Standard — $450+</option>
-          <option value="Premium">Premium — $900+</option>
+          <option value="Basic">Basic — $80</option>
+          <option value="Standard">Standard — $160</option>
+          <option value="Premium">Premium — $280</option>
           <option value="Other / Small fix">Other / Small fix</option>
         </select>
       </div>
@@ -426,10 +430,10 @@
         <label for="cf-budget">Budget</label>
         <select id="cf-budget" name="budget">
           <option value="Not specified">Prefer not to say</option>
-          <option value="Under $300">Under $300</option>
-          <option value="$300–$700">$300–$700</option>
-          <option value="$700–$1,500">$700–$1,500</option>
-          <option value="$1,500+">$1,500+</option>
+          <option value="Under $100">Under $100</option>
+          <option value="$100–$200">$100–$200</option>
+          <option value="$200–$300">$200–$300</option>
+          <option value="$300+">$300+</option>
         </select>
       </div>
       <div class="field full">
@@ -451,7 +455,7 @@
   <div class="wrap">
     <div>© <span id="year"></span> Your Name. All rights reserved.</div>
     <div class="foot-links">
-      <a href="#">Fiverr</a>
+      <a href="https://www.fiverr.com/daisy_anaya" target="_blank" rel="noopener">Fiverr</a>
       <a href="#">LinkedIn</a>
       <a href="#">GitHub</a>
       <a href="#">Instagram</a>
