@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>産後ケアハウス こもれび</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F8EFDF;
+    --bg-deep:#F0DFC3;
+    --card:#FFFBF2;
+    --sage:#C1704A;
+    --sage-light:#D9915F;
+    --sage-deep:#5A3626;
+    --rose:#E0A458;
+    --rose-light:#EFC98A;
+    --ink:#3A2B22;
+    --muted:#8C7561;
+    --line:#E6D5B8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.85;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Shippori Mincho', serif; font-weight:600; line-height:1.4;}
+  a{text-decoration:none; color:inherit;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 32px;}
+  section{padding:100px 0;}
+  .hand{font-family:'Klee One', cursive;}
+
+  .site-nav{position:sticky; top:0; z-index:100; background:rgba(58,43,34,0.95); backdrop-filter:blur(6px);}
+  .site-nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 32px;}
+  .brand{font-family:'Shippori Mincho', serif; font-weight:700; font-size:1.25rem; color:#FBF3E4;}
+  .nav-links{display:flex; gap:28px; list-style:none;}
+  .nav-links a{color:#F1E2C9; font-size:0.88rem;}
+  .nav-cta{background:var(--rose-light); color:var(--sage-deep) !important; padding:9px 20px; border-radius:4px; font-weight:700; font-size:0.85rem;}
+
+  .hero{padding:90px 0 80px; text-align:center; background:linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 100%);}
+  .hero .eyebrow{display:inline-block; font-size:0.8rem; letter-spacing:0.12em; color:var(--sage); font-weight:700; margin-bottom:16px;}
+  .hero h1{font-size:2.6rem; margin-bottom:20px;}
+  .hero p.lead{max-width:520px; margin:0 auto 34px; color:var(--muted); font-size:1rem;}
+  .btn-primary{background:var(--sage); color:#FFF9EF; padding:15px 32px; border-radius:4px; font-weight:700; font-size:0.95rem; display:inline-block;}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+
+  .section-head{text-align:center; max-width:600px; margin:0 auto 56px;}
+  .section-head .eyebrow{color:var(--sage); font-size:0.8rem; font-weight:700; letter-spacing:0.1em; display:block; margin-bottom:12px;}
+  .section-head h2{font-size:2rem;}
+
+  .empathy-grid{display:flex; flex-wrap:wrap; gap:14px; justify-content:center;}
+  .symptom-pill{background:var(--card); border:1px solid var(--line); padding:14px 22px; border-radius:30px; font-size:0.92rem; color:var(--ink);}
+
+  .day-panel{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px 0; max-width:720px; margin:0 auto;}
+  .day-row{display:grid; grid-template-columns:90px 1fr; gap:20px; padding:22px 34px; border-bottom:1px solid var(--line);}
+  .day-row:last-child{border-bottom:none;}
+  .day-time{font-family:'Shippori Mincho', serif; color:var(--sage); font-weight:700;}
+  .day-row h4{font-size:1.05rem; margin-bottom:6px;}
+  .day-row p{font-size:0.9rem; color:var(--muted);}
+  .sticky-note{background:var(--rose-light); border-radius:6px; padding:16px 18px; margin-top:12px; font-family:'Klee One', cursive; font-size:0.9rem; color:var(--sage-deep); box-shadow:0 4px 10px rgba(90,54,38,0.12); transform:rotate(-1deg);}
+
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .svc-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:28px;}
+  .svc-card h3{font-size:1.1rem; margin-bottom:10px;}
+  .svc-card p{font-size:0.9rem; color:var(--muted);}
+
+  .midwife-panel{display:grid; grid-template-columns:220px 1fr; gap:40px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:40px;}
+  .midwife-photo{width:200px; height:200px; border-radius:50%; background:linear-gradient(160deg, var(--rose-light), var(--sage-light)); margin:0 auto;}
+  .midwife-panel h3{font-size:1.3rem; margin-bottom:6px;}
+  .midwife-role{color:var(--sage); font-size:0.88rem; font-weight:700; margin-bottom:14px;}
+  .midwife-panel p{font-size:0.92rem; color:var(--muted); margin-bottom:10px;}
+  .cert-tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+  .cert-tags span{background:var(--bg-deep); padding:6px 14px; border-radius:20px; font-size:0.78rem; color:var(--sage-deep); font-weight:700;}
+
+  .pricing{background:var(--bg-deep);}
+  .pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .price-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:32px 26px; position:relative;}
+  .price-card.featured{border-color:var(--sage); box-shadow:0 18px 36px rgba(193,112,74,0.16);}
+  .price-tag{position:absolute; top:-14px; right:22px; background:var(--sage); color:#FFF9EF; font-size:0.7rem; font-weight:700; padding:6px 14px; border-radius:20px;}
+  .price-card h3{font-size:1.2rem; margin-bottom:6px;}
+  .price-amt{font-family:'Shippori Mincho', serif; font-size:1.9rem; color:var(--sage); margin-bottom:16px;}
+  .price-amt span{font-size:0.8rem; font-family:'Zen Kaku Gothic New', sans-serif; color:var(--muted);}
+  .price-card ul{list-style:none; margin-bottom:22px;}
+  .price-card li{font-size:0.88rem; color:var(--muted); padding:7px 0; border-bottom:1px solid var(--line);}
+  .price-card li:last-child{border-bottom:none;}
+  .price-btn{display:block; text-align:center; padding:13px; border-radius:4px; font-weight:700; font-size:0.88rem; border:1px solid var(--sage); color:var(--sage);}
+  .price-card.featured .price-btn{background:var(--sage); color:#FFF9EF;}
+
+  details{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:20px 24px; margin-bottom:14px; max-width:720px; margin-left:auto; margin-right:auto;}
+  summary{font-weight:700; cursor:pointer; font-size:0.98rem; list-style:none;}
+  summary::-webkit-details-marker{display:none;}
+  details p{margin-top:12px; color:var(--muted); font-size:0.9rem;}
+
+  .closing{background:var(--sage-deep); color:#FBF3E4; text-align:center;}
+  .closing h2{font-size:2.2rem; margin-bottom:26px; color:#FBF3E4;}
+
+  footer{background:var(--sage-deep); color:#D9C4A8; padding:40px 0; font-size:0.82rem; text-align:center;}
+  .disclaimer{max-width:700px; margin:0 auto 16px; font-size:0.76rem; color:#C9AF8C;}
+
+  @media(max-width:900px){
+    .services-grid,.pricing-grid{grid-template-columns:1fr;}
+    .midwife-panel{grid-template-columns:1fr; text-align:center;}
+    .day-row{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <div class="brand">産後ケアハウス こもれび</div>
+    <ul class="nav-links">
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#pricing">料金</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ul>
+    <a href="#pricing" class="nav-cta">ご予約・お問い合わせ</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">産後ケアハウス</span>
+    <h1>ひとりで抱えなくていい、<br>産後の時間を。</h1>
+    <p class="lead">出産という大きな変化のあと、心と体を整える時間を。助産師が寄り添う、デイケア・宿泊型の産後ケア施設です。</p>
+    <a href="#pricing" class="btn-primary">ご予約はこちら</a>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">こんなお悩み、ありませんか</span>
+      <h2>ひとりで頑張りすぎていませんか</h2>
+    </div>
+    <div class="empathy-grid">
+      <div class="symptom-pill">悪露が続いていて不安</div>
+      <div class="symptom-pill">会陰の傷が痛む</div>
+      <div class="symptom-pill">母乳が出ているか分からない</div>
+      <div class="symptom-pill">夜中に涙が出る</div>
+      <div class="symptom-pill">体力がなかなか戻らない</div>
+      <div class="symptom-pill">誰にも話せない気持ちがある</div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">1日の過ごし方</span>
+      <h2>こもれびでの、ある1日</h2>
+    </div>
+    <div class="day-panel">
+      <div class="day-row">
+        <div class="day-time">7:00</div>
+        <div><h4>起床・体調チェック</h4><p>助産師によるバイタルチェックと、その日の体調確認から1日が始まります。</p></div>
+      </div>
+      <div class="day-row">
+        <div class="day-time">9:30</div>
+        <div>
+          <h4>授乳サポート</h4>
+          <p>母乳育児に関するご相談の時間です。</p>
+          <div class="sticky-note hand">「母乳が足りているか分からない」というご相談、実はとても多いです。一緒に体重の増え方を見ていきましょう。</div>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-time">13:00</div>
+        <div><h4>自由休息の時間</h4><p>お子様をお預かりする間、ゆっくりお休みいただけます。</p></div>
+      </div>
+      <div class="day-row">
+        <div class="day-time">15:30</div>
+        <div>
+          <h4>個別カウンセリング</h4>
+          <p>体の回復やお気持ちについて、助産師と1対1でお話しする時間です。</p>
+          <div class="sticky-note hand">会陰の傷やホルモンバランスの変化について、遠慮なく聞いてくださいね。誰もが通る道です。</div>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-time">21:00</div>
+        <div><h4>夜間サポート</h4><p>夜間の授乳や不安なことにも、スタッフが対応します。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">サービス内容</span>
+      <h2>こもれびでできること</h2>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card"><h3>母乳育児サポート</h3><p>授乳姿勢や乳房のケア、母乳量に関するご相談に対応します。</p></div>
+      <div class="svc-card"><h3>産後の体調管理</h3><p>悪露や会陰創部の経過観察、体力回復のためのケアを行います。</p></div>
+      <div class="svc-card"><h3>心のケア</h3><p>マタニティブルーズや不安な気持ちに、助産師が寄り添います。</p></div>
+      <div class="svc-card"><h3>新生児ケア指導</h3><p>沐浴や抱っこ、日々のお世話の不安を一緒に解消します。</p></div>
+      <div class="svc-card"><h3>栄養バランス食事</h3><p>産後の体に配慮した、栄養士監修の食事をご用意します。</p></div>
+      <div class="svc-card"><h3>ご家族へのサポート</h3><p>パートナーの方への育児サポート方法もお伝えしています。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">ご挨拶</span>
+      <h2>代表助産師より</h2>
+    </div>
+    <div class="midwife-panel">
+      <div class="midwife-photo"></div>
+      <div>
+        <h3>田中 実代子</h3>
+        <div class="midwife-role">代表助産師・こもれび施設長</div>
+        <p>助産師として14年、多くのお母さまと赤ちゃんに関わってきました。産後は「なんとなく不調」を我慢してしまう方がとても多い時期です。小さなことでも、ここでは遠慮なくお話しください。</p>
+        <div class="cert-tags">
+          <span>助産師免許</span>
+          <span>新生児蘇生法(NCPR)認定</span>
+          <span>臨床経験14年</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">料金プラン</span>
+      <h2>ご利用プラン</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <h3>デイケア</h3>
+        <div class="price-amt">¥15,000<span>/ 日</span></div>
+        <ul><li>日帰りでのご利用</li><li>授乳・育児相談</li><li>お食事付き</li></ul>
+        <a href="#" class="price-btn">詳しく見る</a>
+      </div>
+      <div class="price-card featured reveal">
+        <div class="price-tag">人気No.1</div>
+        <h3>ショートステイ</h3>
+        <div class="price-amt">¥28,000<span>/ 泊</span></div>
+        <ul><li>1泊2日からのご宿泊</li><li>個別カウンセリング付き</li><li>お食事・アメニティ込み</li></ul>
+        <a href="#" class="price-btn">詳しく見る</a>
+      </div>
+      <div class="price-card reveal">
+        <h3>ロングステイ</h3>
+        <div class="price-amt">¥25,000<span>/ 泊〜</span></div>
+        <ul><li>1週間以上のご滞在向け</li><li>継続的な体調管理</li><li>ご家族の同室相談可</li></ul>
+        <a href="#" class="price-btn">詳しく見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">よくある質問</span>
+      <h2>ご利用前に</h2>
+    </div>
+    <details>
+      <summary>里帰り出産をしていませんが利用できますか？</summary>
+      <p>はい、ご利用いただけます。里帰りの有無に関わらず、多くの方にご利用いただいています。</p>
+    </details>
+    <details>
+      <summary>上の子どもも一緒に過ごせますか？</summary>
+      <p>お部屋のタイプによって対応可能です。ご予約時にご相談ください。</p>
+    </details>
+    <details>
+      <summary>出産後どのくらいから利用できますか？</summary>
+      <p>退院直後からご利用いただけます。産後1年以内の方を対象としています。</p>
+    </details>
+    <details>
+      <summary>パートナーも一緒に宿泊できますか？</summary>
+      <p>お部屋によって同室可能なプランもございます。詳細はお問い合わせください。</p>
+    </details>
+  </div>
+</section>
+
+<section class="closing reveal">
+  <div class="wrap">
+    <h2>ひとりで抱えず、頼ってください</h2>
+    <a href="#pricing" class="btn-primary">ご予約・お問い合わせ</a>
+  </div>
+</section>
+
+<footer>
+  <p class="disclaimer">※本サイトはポートフォリオ用に制作した架空施設のコンセプトサイトです。実在の施設・人物とは関係ありません。</p>
+  <div>© <span id="year"></span> 産後ケアハウス こもれび(コンセプト)</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
